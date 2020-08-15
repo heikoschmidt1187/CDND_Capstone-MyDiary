@@ -1,0 +1,40 @@
+service:
+  name: my-diary-app
+
+plugins:
+  - serverless-webpack
+  - serverless-iam-roles-per-function
+  - serverless-reqvalidator-plugin
+  - serverless-aws-documentation
+
+custom:
+  documentation:
+    api:
+      info:
+        version: v1.0.0
+        title: Udacity Capstone My Diary App
+        description: Udacity Capstone My Diary App
+    #models:
+      #- name: CreateTodo
+        #contentType: application/json
+        #schema: ${file(src/validators/create-todo-request.json)}
+      #- name: UpdateTodo
+        #contentType: application/json
+        #schema: ${file(src/validators/update-todo-request.json)}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
+
+  tracing:
+    lambda: true 
+    apiGateway: true
+
+  environment:
+
+functions:
+   
+resources:
