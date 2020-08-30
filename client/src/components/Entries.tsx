@@ -11,7 +11,9 @@ import {
   Icon,
   Input,
   Image,
-  Loader
+  Loader,
+  TextArea,
+  Form
 } from 'semantic-ui-react'
 
 import { createDiaryEntry, deleteDiaryEntry, getDiaryEntries, patchDiaryEntry } from '../api/entries-api'
@@ -42,15 +44,11 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
     this.setState({ newEntryTitle: event.target.value })
   }
 
-  handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ newEntryContent: event.target.value })
-  }
-
   onEditButtonClick = (diaryEntryId: string) => {
     this.props.history.push(`/entries/${diaryEntryId}/edit`)
   }
 
-  onEntryCreate = async (event: React.ChangeEvent<HTMLButtonElement>) => {
+  onEntryCreate = async () => {
     try {
       const newEntry = await createDiaryEntry(this.props.auth.getIdToken(), {
         title: this.state.newEntryTitle,
@@ -100,25 +98,23 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
       </div>
     )
   }
+
   
   renderCreateDiaryEntryInput() {
-    // TODO: handle content entry change...
     return (
       <Grid.Row>
         <Grid.Column width={16}>
-          <Input
-            action={{
-              color: 'teal',
-              labelPosition: 'left',
-              icon: 'add',
-              content: 'New diary entry',
-              onClick: this.onEntryCreate
-            }}
-            fluid
-            actionPosition="left"
-            placeholder="Diary entry title goes here..."
-            onChange={this.handleTitleChange}
-          />
+          <Form>
+            <Form.Field>
+              <Input placeholder="Title goes here" onChange={this.handleTitleChange} fluid />
+            </Form.Field>
+            <Form.Field>
+              <TextArea id="contentarea" placeholder="Entry content goes here" onChange={(e, { value }) => this.state.newEntryContent = value as string} />
+            </Form.Field>
+            <Form.Field>
+              <Button onClick={this.onEntryCreate}>New Diary Entry</Button>
+            </Form.Field>
+          </Form>
         </Grid.Column>
         <Grid.Column width={16}>
           <Divider />
