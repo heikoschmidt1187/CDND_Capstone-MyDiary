@@ -8,7 +8,6 @@ import { DiaryEntryAccess } from '../dataLayer/diaryentryAccess'
 import { createLogger } from '../utils/logger'
 import { CreateEntryRequest } from '../requests/CreateEntryRequest'
 import { UpdateEntryRequest } from '../requests/UpdateEntryRequest'
-import { DiaryEntryAccess } from '../dataLayer/diaryentryAccess'
 
 // instantiate logger object
 const logger = createLogger('diaryentryBusinessLogic')
@@ -27,17 +26,17 @@ export async function getAllEntries(userId: string): Promise<DiaryEntry[]> {
 export async function createEntry(userId: string, createEntryRequest: CreateEntryRequest): Promise<DiaryEntry> {
 
     // get a uuid for the new TODO
-    const diaryEntryId = uuid.v4()
+    const entryId = uuid.v4()
 
     const newDiaryEntry: DiaryEntry = {
         userId,
-        diaryEntryId,
+        entryId,
         createdAt: new Date().toISOString(),
         attachmentUrl: null,
         ...createEntryRequest
     }
 
-    logger.info(`Creating new diary entry ${diaryEntryId} for user ${userId}`, {userId, diaryEntryId, diaryEntry: newDiaryEntry})
+    logger.info(`Creating new diary entry ${entryId} for user ${userId}`, {userId, entryId, diaryEntry: newDiaryEntry})
 
     // check for string only containing spaces
     if(!createEntryRequest.title.replace(/\s/g, '').length)
@@ -46,7 +45,7 @@ export async function createEntry(userId: string, createEntryRequest: CreateEntr
         throw new Error('Content containing only spaces not allowed')
 
     // put to data link
-    await DiaryEntryAccess.createDiaryEntry(newDiaryEntry)
+    await entriesAccess.createDiaryEntry(newDiaryEntry)
 
     return newDiaryEntry
 }

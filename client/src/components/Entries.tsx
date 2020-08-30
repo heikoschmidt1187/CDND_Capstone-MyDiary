@@ -111,12 +111,12 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
               color: 'teal',
               labelPosition: 'left',
               icon: 'add',
-              content: 'New task',
+              content: 'New diary entry',
               onClick: this.onEntryCreate
             }}
             fluid
             actionPosition="left"
-            placeholder="To change the world..."
+            placeholder="Diary entry title goes here..."
             onChange={this.handleTitleChange}
           />
         </Grid.Column>
@@ -128,32 +128,6 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
   }
 
   renderDiaryEntries() {
-    return (
-      <Grid.Row>
-        <Grid.Column width={16}>
-          <Input
-            action={{
-              color: 'teal',
-              labelPosition: 'left',
-              icon: 'add',
-              content: 'New diary entry',
-              onClick: this.onEntryCreate
-            }}
-            fluid
-            actionPosition="left"
-            placeholder="To change the world..."
-            onChange={this.handleTitleChange}
-            // TODO: handle content stuff
-          />
-        </Grid.Column>
-        <Grid.Column width={16}>
-          <Divider />
-        </Grid.Column>
-      </Grid.Row>
-    )
-  }
-
-  renderTodos() {
     if (this.state.loadingEntries) {
       return this.renderLoading()
     }

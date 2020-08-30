@@ -38,7 +38,10 @@ export default class App extends Component<AppProps, AppState> {
       <div>
         <Segment style={{ padding: '8em 0em' }} vertical>
           <Grid container stackable verticalAlign="middle">
-            <Grid.Row>
+          <Grid.Row>
+            <img src="https://diary-attachments-dev.s3.eu-central-1.amazonaws.com/assets/Banner.png"/>
+          </Grid.Row>
+          <Grid.Row>
               <Grid.Column width={16}>
                 <Router history={this.props.history}>
                   {this.generateMenu()}

@@ -2,7 +2,7 @@ service:
   name: my-diary-app
 
 plugins:
-  #- serverless-webpack
+  - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
   - serverless-aws-documentation
@@ -258,7 +258,8 @@ resources:
         BucketName: ${self:provider.environment.ATTACHMENTS_S3_BUCKET}
         CorsConfiguration:
           CorsRules:
-            - AllowedOrigins:
+            - 
+              AllowedOrigins:
                 - '*'
               AllowedHeaders:
                 - '*'
