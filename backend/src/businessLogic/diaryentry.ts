@@ -95,13 +95,13 @@ export async function deleteDiaryEntry(userId: string, entryId: string) {
 }
 
 // operation to update the attachment URL of a diary entry
-export async function updAttachmentUrl(userId: string, diaryEntryId: string, attachmentId: string) {
+export async function updAttachmentUrl(userId: string, entryId: string, attachmentId: string) {
 
-    logger.info(`Creating Attachment URL for diary entry ${diaryEntryId} for user ${userId} attachmentID ${attachmentId}`, {diaryEntryId, userId, attachmentId})
+    logger.info(`Creating Attachment URL for diary entry ${entryId} for user ${userId} attachmentID ${attachmentId}`, {entryId, userId, attachmentId})
 
     // get the attachment URL of the diary entry
     const attUrl = await entriesAccess.getAttachUrl(attachmentId)
-    const entry = await entriesAccess.getDiaryEntry(userId, diaryEntryId)
+    const entry = await entriesAccess.getDiaryEntry(userId, entryId)
 
     // check if item is valid
     if(!entry)
@@ -112,7 +112,7 @@ export async function updAttachmentUrl(userId: string, diaryEntryId: string, att
         throw new Error('Trying to modify diary entry that does not belong to user')
 
     // update the url
-    await entriesAccess.updateAttachmentUrl(userId, diaryEntryId, attUrl)
+    await entriesAccess.updateAttachmentUrl(userId, entryId, attUrl)
 }
 
 // operation to generate an upload url

@@ -136,13 +136,13 @@ export class DiaryEntryAccess {
     }
 
     // update function for attachments
-    async updateAttachmentUrl(userId: string, diaryEntryId: string, attachUrl: string) {
+    async updateAttachmentUrl(userId: string, entryId: string, attachUrl: string) {
 
-        logger.info(`Data access for updating the attachment URL for diary entry ${diaryEntryId} for user ${userId} and URL ${attachUrl}`, {diaryEntryId, userId, attachUrl})
+        logger.info(`Data access for updating the attachment URL for diary entry ${entryId} for user ${userId} and URL ${attachUrl}`, {entryId, userId, attachUrl})
 
         await this.docClient.update({
             TableName: this.diaryTable,
-            Key: { userId, diaryEntryId },
+            Key: { userId, entryId },
             UpdateExpression: 'set attachmentUrl = :attachmentUrl',
             ExpressionAttributeValues: {
                 ':attachmentUrl': attachUrl

@@ -12,7 +12,7 @@ enum UploadState {
 interface EditEntryProps {
   match: {
     params: {
-      diaryEntryId: string
+      entryId: string
     }
   }
   auth: Auth
@@ -51,7 +51,9 @@ export class EditEntry extends React.PureComponent<
       }
 
       this.setUploadState(UploadState.FetchingPresignedUrl)
-      const uploadUrl = await getUploadUrl(this.props.auth.getIdToken(), this.props.match.params.diaryEntryId)
+
+      console.log("+++++Get URL for ", this.props.match.params.entryId)
+      const uploadUrl = await getUploadUrl(this.props.auth.getIdToken(), this.props.match.params.entryId)
 
       this.setUploadState(UploadState.UploadingFile)
       await uploadFile(uploadUrl, this.state.file)

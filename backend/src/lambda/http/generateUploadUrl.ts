@@ -13,7 +13,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   logger.info('Processing event to generate an upload url', {event})
 
   // extract user and diary entry id
-  const diaryEntryId = event.pathParameters.diaryEntryId
+  const entryId = event.pathParameters.diaryEntryId
   const userId = getUserId(event)
   const attId = uuid.v4();
   
@@ -21,7 +21,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   const uploadUrl = await genUploadUrl(attId)
 
   // update with the new url
-  await updAttachmentUrl(userId, diaryEntryId, attId)
+  await updAttachmentUrl(userId, entryId, attId)
   
   return {
     statusCode: 200,

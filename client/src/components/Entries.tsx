@@ -44,8 +44,8 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
     this.setState({ newEntryTitle: event.target.value })
   }
 
-  onEditButtonClick = (diaryEntryId: string) => {
-    this.props.history.push(`/entries/${diaryEntryId}/edit`)
+  onEditButtonClick = (entryId: string) => {
+    this.props.history.push(`/entries/${entryId}/edit`)
   }
 
   onEntryCreate = async () => {
