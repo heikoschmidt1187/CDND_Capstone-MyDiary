@@ -12,7 +12,7 @@ The application stores the diary entries, where each entry may contain the follo
 
 * `entryid` (string) - a unique id for an diary entry
 * `createdAt` (string) - date and time the diary entry was created
-* `title` (string) (optional) - a title for the diary entry, e.g. to summary the mood on that day
+* `title` (string) - a title for the diary entry, e.g. to summary the mood on that day
 * `content` (string) - the text content of the entry
 * `attachmentUrl` (string) (optional) - a URL pointing to an image attached to the diary entry
 

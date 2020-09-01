@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "update-entry",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "minLength": 1
+        },
+        "content": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "title",
+        "content"
+    ],
+    "additionalProperties": false
+}
