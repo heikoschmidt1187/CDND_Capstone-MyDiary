@@ -51,8 +51,6 @@ export class EditEntry extends React.PureComponent<
       }
 
       this.setUploadState(UploadState.FetchingPresignedUrl)
-
-      console.log("+++++Get URL for ", this.props.match.params.entryId)
       const uploadUrl = await getUploadUrl(this.props.auth.getIdToken(), this.props.match.params.entryId)
 
       this.setUploadState(UploadState.UploadingFile)
