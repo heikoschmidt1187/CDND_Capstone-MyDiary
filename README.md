@@ -108,4 +108,30 @@ Folder *src* contains the actual sourcecode of the backend. The most important f
   * *update-entry-request.json* defines must have properties for updating an existing entry
 
 ## Frontend/Client
-+++ TODO +++
+The frontend is implemented as NodeJS React single page web application. In it's easiest ways, it 
+runs locally and connects to the Amazon AWS backend. The sourcecode is located in the *client* folder 
+in this repository.
+
+Like in the backend folder described in the previous section, the client also contains npm files with 
+all needed dependencies. In the following part, some important files in the *src* folder are described. 
+Please have a look at the actual repository files to gain a complete view on the implementation.
+
+* src
+  * all the React application source files are located here
+* api
+  * definitions for the diary entry API to the backend (*entries-api.ts*)
+* auth
+  * helpers for the auth0 authentication
+* components
+  * all the router components for the frontend can be found here
+  * *Callback.tsx*
+    * loading animation while authentication callback is running
+  * *EditEntry.tsx*
+    * the view when updating an existing diary entry
+    * shows the possibility to select and upload an image for a diary entry
+  * *Entries.tsx*
+    * the "default" view for listing existing diary entries and creating new ones
+  * *LogIn.tsx*
+    * the log in screen prior to access the diary
+  * *NotFound.tsx*
+    * Error screen on not found resources*
