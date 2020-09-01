@@ -112,7 +112,7 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
               <TextArea id="contentarea" placeholder="Entry content goes here" onChange={(e, { value }) => this.state.newEntryContent = value as string} />
             </Form.Field>
             <Form.Field>
-              <Button onClick={this.onEntryCreate}>New Diary Entry</Button>
+              <Button color="blue" onClick={this.onEntryCreate}>New Diary Entry</Button>
             </Form.Field>
           </Form>
         </Grid.Column>
@@ -148,7 +148,7 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
           return (
             <Grid.Row key={entry.diaryEntryId}>
               <Grid.Column width={10} verticalAlign="middle">
-                {entry.title}
+                <b>{entry.title} - {entry.createdAt.split("T")[0]}</b>
               </Grid.Column>
               <Grid.Column width={10} verticalAlign="middle">
                 {entry.content}
