@@ -67,14 +67,14 @@ export class DiaryEntryAccess {
     }
 
     // helper to get a specific diary entry by id 
-    async getDiaryEntry(userId: string, diaryEntryId: string): Promise<DiaryEntry> {
+    async getDiaryEntry(userId: string, entryId: string): Promise<DiaryEntry> {
 
-        logger.info(`Data access for getting diary entry ${diaryEntryId} presence`, {diaryEntryId})
+        logger.info(`Data access for getting diary entry ${entryId} presence`, {entryId})
 
         // get the entry from the database
         const result = await this.docClient.get({
             TableName: this.diaryTable,
-            Key: { userId, diaryEntryId }
+            Key: { userId, entryId }
         }).promise()
 
         return result.Item as DiaryEntry
@@ -102,13 +102,13 @@ export class DiaryEntryAccess {
 
   
     // operation to delete a diary entry
-    async deleteDiaryEntry(userId: string, diaryEntryId: string) {
+    async deleteDiaryEntry(userId: string, entryId: string) {
 
-        logger.info(`Data access for deleting diary entry ${diaryEntryId} for user ${userId}`, {diaryEntryId, userId})
+        logger.info(`Data access for deleting diary entry ${entryId} for user ${userId}`, {entryId, userId})
 
         await this.docClient.delete({
             TableName: this.diaryTable,
-            Key: { userId, diaryEntryId }
+            Key: { userId, entryId }
         }).promise()
     }
 

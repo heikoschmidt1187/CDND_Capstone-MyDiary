@@ -13,11 +13,11 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   logger.info('Processing event to delete diary entry', {event})
 
   // get userid and diary entry id
-  const diaryEntryId = event.pathParameters.diaryEntryId
+  const entryId = event.pathParameters.diaryEntryId
   const userId = getUserId(event)
 
   // delete diary entry
-  await deleteDiaryEntry(userId, diaryEntryId)
+  await deleteDiaryEntry(userId, entryId)
 
   return {
     statusCode: 204,

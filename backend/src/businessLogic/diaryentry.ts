@@ -76,12 +76,12 @@ export async function updateDiaryEntry(userId: string, diaryEntryId: string, upd
 }
 
 // operation to delete diary entry
-export async function deleteDiaryEntry(userId: string, diaryEntryId: string) {
+export async function deleteDiaryEntry(userId: string, entryId: string) {
 
-    logger.info(`Deleting diary entry ${diaryEntryId} for user ${userId}`, {diaryEntryId, userId})
+    logger.info(`Deleting diary entry ${entryId} for user ${userId}`, {entryId, userId})
 
     // get the diary entry to delete
-    const entry = await entriesAccess.getDiaryEntry(userId, diaryEntryId)
+    const entry = await entriesAccess.getDiaryEntry(userId, entryId)
 
     // check if item is valid
     if(!entry)
@@ -91,7 +91,7 @@ export async function deleteDiaryEntry(userId: string, diaryEntryId: string) {
     if(entry.userId !== userId) 
         throw new Error('Trying to delete entry that does not belong to user')
 
-    entriesAccess.deleteDiaryEntry(userId, diaryEntryId)
+    entriesAccess.deleteDiaryEntry(userId, entryId)
 }
 
 // operation to update the attachment URL of a diary entry

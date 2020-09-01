@@ -64,11 +64,13 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
     }
   }
 
-  onEntryDelete = async (diaryEntryId: string) => {
+  onEntryDelete = async (entryId: string) => {
+    console.log("Try to delete", entryId)
+
     try {
-      await deleteDiaryEntry(this.props.auth.getIdToken(), diaryEntryId)
+      await deleteDiaryEntry(this.props.auth.getIdToken(), entryId)
       this.setState({
-        entries: this.state.entries.filter(entry => entry.diaryEntryId != diaryEntryId)
+        entries: this.state.entries.filter(entry => entry.entryId != entryId)
       })
     } catch {
       alert('Diary entry deletion failed')
@@ -146,7 +148,7 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
       <Grid padded>
         {this.state.entries.map((entry, pos) => {
           return (
-            <Grid.Row key={entry.diaryEntryId}>
+            <Grid.Row key={entry.entryId}>
               <Grid.Column width={10} verticalAlign="middle">
                 <b>{entry.title} - {entry.createdAt.split("T")[0]}</b>
               </Grid.Column>
@@ -157,7 +159,7 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
                 <Button
                   icon
                   color="blue"
-                  onClick={() => this.onEditButtonClick(entry.diaryEntryId)}
+                  onClick={() => this.onEditButtonClick(entry.entryId)}
                 >
                   <Icon name="pencil" />
                 </Button>
@@ -166,7 +168,7 @@ export class Entries extends React.PureComponent<EntriesProps, EntriesState> {
                 <Button
                   icon
                   color="red"
-                  onClick={() => this.onEntryDelete(entry.diaryEntryId)}
+                  onClick={() => this.onEntryDelete(entry.entryId)}
                 >
                   <Icon name="delete" />
                 </Button>

@@ -45,9 +45,9 @@ export async function patchDiaryEntry(
 
 export async function deleteDiaryEntry(
   idToken: string,
-  diaryEntryId: string
+  entryId: string
 ): Promise<void> {
-  await Axios.delete(`${apiEndpoint}/entries/${diaryEntryId}`, {
+  await Axios.delete(`${apiEndpoint}/entries/${entryId}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`

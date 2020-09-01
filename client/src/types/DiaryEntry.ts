@@ -1,5 +1,6 @@
 export interface DiaryEntry {
-  diaryEntryId: string
+  userId: string
+  entryId: string
   createdAt: string
   attachmentUrl?: string
   title: string
